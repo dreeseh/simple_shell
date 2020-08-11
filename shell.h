@@ -9,15 +9,14 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <readline/readline.h>
+/* #include <readline/readline.h> */
 
 
 
 /* prototypes */
 
 int readbuff(char* str);
-int main(int argc, char *argv[]);
 void execArgs(char** parsed);
+void _prompt(void);
 
-
-#endif 
+#endif
