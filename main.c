@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execv(argv[1], argv) == -1);
+		if (execv(argv[1], argv) == -1)
 		{
 		perror("child process terminated");
 		}

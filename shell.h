@@ -15,8 +15,11 @@
 
 /* prototypes */
 
+int _putchar (char c);
 int readbuff(char* str);
 void execArgs(char** parsed);
 void _prompt(void);
+int _print_string(char ch);
+void _printf(char *string);
 
 #endif
