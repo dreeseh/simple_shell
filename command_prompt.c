@@ -1,21 +1,18 @@
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
 #include "shell.h"
-#define PRMTSIZ 255
+#define BUFFER 255
 
 int main(void)
 {
 
 
-	char input[PRMTSIZ + 1] = { 0x0 };
+	char input[BUFFER + 1] = { 0x0 };
 	char *input_pointer = input;
-	size_t len = PRMTSIZ;
+	size_t length = BUFFER;
 	FILE *stream = stdin;
 
 	_prompt();
-	getline(&input_pointer, &len, stream);
-	input[strlen(input) - 1] = '\0'; // remove trailing \n
+	getline(&input_pointer, &length, stream);
+	input[_strlen(input) - 1] = '\0';
 
 	execvp(input, (char *[]){input, NULL});
 }
