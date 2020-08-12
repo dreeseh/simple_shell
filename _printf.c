@@ -22,5 +22,4 @@ void _printf(char *string)
 	{
 		_print_string(string[i]);
 	}
-	_putchar('\n');
 }
