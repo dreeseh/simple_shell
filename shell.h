@@ -21,5 +21,5 @@ void execArgs(char** parsed);
 void _prompt(void);
 int _print_string(char ch);
 void _printf(char *string);
-
+int _strlen(char *s);
 #endif
