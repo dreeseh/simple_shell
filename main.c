@@ -12,13 +12,16 @@ int main(int argc, char *argv[])
 	int status;
 	unsigned int i = 0;
 
+	char cmd[100];
 	char *arg[MAXARG + 1] = {NULL};
 	char input[BUFFER + 1] = {0x0};
 	char *input_pointer = input;
 	char *p = input;
 	size_t length = BUFFER;
 	FILE *stream = stdin;
-	
+/*	char *env[] = { (char *) "PATH=/bin", 0 }; */
+
+	while (1){
 	_prompt();
 	getline(&input_pointer, &length, stream);
 	input[_strlen(input) - 1] = '\0';
@@ -27,7 +30,7 @@ int main(int argc, char *argv[])
 
 	(void)argc;
 	(void)wpid;
-
+	(void)argv;
 	while (i < sizeof(arg) && *p)
 	{
 		if (*p == ' ') continue;
@@ -36,11 +39,12 @@ int main(int argc, char *argv[])
 		*p = '\0';
 		p++;
 	}
-
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(argv[1], arg, env) == -1)
+		strcpy (cmd, "/bin/");
+		strcat (cmd, *arg);
+		if (execve(cmd, arg, NULL) == -1)
 		{
 		perror("child process terminated");
 		}
@@ -58,5 +62,6 @@ int main(int argc, char *argv[])
 		_printf("parent process sucessful");
 	}
 	return 1;
+	}
 
 }
