@@ -15,6 +15,9 @@
 
 /* prototypes */
 
+char *_strncpy(char *dest, char *src, int n);
+int _strlen(char *s);
+char *_strncat(char *dest, char *src, int n);
 int _putchar (char c);
 int readbuff(char* str);
 void execArgs(char** parsed);
