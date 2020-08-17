@@ -21,7 +21,8 @@ int main(int argc, char *argv[])
 	FILE *stream = stdin;
 /*	char *env[] = { (char *) "PATH=/bin", 0 }; */
 
-	while (1){
+	while (1)
+	{
 	_prompt();
 	getline(&input_pointer, &length, stream);
 	input[_strlen(input) - 1] = '\0';
@@ -42,8 +43,8 @@ int main(int argc, char *argv[])
 	pid = fork();
 	if (pid == 0)
 	{
-		strcpy (cmd, "/bin/");
-		strcat (cmd, *arg);
+		_strcpy (cmd, "/bin/");
+		_strcat (cmd, *arg);
 		if (execve(cmd, arg, NULL) == -1)
 		{
 		perror("child process terminated");
