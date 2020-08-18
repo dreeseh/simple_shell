@@ -18,19 +18,23 @@ int main(int argc, char *argv[])
 	char *input_pointer = input;
 	char *p = input;
 	size_t length = BUFFER;
+	int ret_val, endoffile;
+
 
 /*	char *env[] = { (char *) "PATH=/bin", 0 }; */
 	while (1)
 	{
+		manual_mode(argc, argv);
 		_prompt();
-		getline(&input_pointer, &length, stdin);
+		endoffile = getline(&input_pointer, &length, stdin);
+		if (endoffile == EOF)
+		{
+			exit(EXIT_SUCCESS);
+		}
+
 		input[_strlen(input) - 1] = '\0';
 
-		/* execvp(input, (char *[]){input, NULL}); */
-
-		(void)argc;
 		(void)wpid;
-		(void)argv;
 
        		while (i < sizeof(arg) && *p)
 		{
@@ -47,12 +51,14 @@ int main(int argc, char *argv[])
 		if (pid == 0)
 		{
 			if (_strcmp (*arg, "exit") == 2) break;
-
-			_strcpy (cmd, "/bin/");
-			_strcat (cmd, *arg);
+			if (_strcmp (*arg, NULL) == 2) continue;
+			_strcpy(cmd, "/bin/");
+			_strcat(cmd, *arg);
 			if (execve(cmd, arg, NULL) == -1)
 			{
-				perror("command not found");
+				ret_val = 1;
+				error_return(cmd, ret_val, arg);
+				perror("not found");
 			}
 		}
 		/* error forking */
@@ -68,9 +74,8 @@ int main(int argc, char *argv[])
 			}
 			while (!WIFEXITED(status) && !WIFSIGNALED(status));
 			if (_strcmp (*arg, "exit") == 2) break;
-			/*	exit(EXIT_SUCCESS) ; WSTOPSIG(status);
-				_printf("parent process sucessful"); */
+			ret_val = 0;
 		}
 	}
-	return (0);
+	return (ret_val);
 }
