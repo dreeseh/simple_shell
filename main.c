@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 		if (pid == 0)
 		{
 			if (_strcmp(*arg, "exit") == 2)
-				break;
+        break;
 			_strcpy(cmd, "/bin/");
 			_strcat(cmd, *arg);
 			if (execve(cmd, arg, NULL) == -1)
