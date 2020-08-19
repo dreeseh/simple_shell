@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
  * _print_string - replicates the putchar function
- * @ch: input string
+ *
  * Return: Character write
  */
 int _print_string(char ch)
@@ -11,7 +11,7 @@ int _print_string(char ch)
 
 /**
  * _printf - replicates the puts function
- * @string: input string
+ *
  * Return: no return
  */
 void _printf(char *string)

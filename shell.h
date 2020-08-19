@@ -31,6 +31,4 @@ char *_strcat(char *dest, char *src);
 int _strcmp(const char *s1, char *s2);
 void manual_mode(int argc, char *argv[]);
 void error_return(char* cmd, int ret_val, char** arg);
-
-
 #endif
