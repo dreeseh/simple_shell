@@ -1,7 +1,14 @@
 #include "shell.h"
 #define BUFFER 255
 
-char* _command_prompt(void)
+/**
+ * _command_prompt - generates the prompt and waits for user input
+ *
+ *
+ * Return: input_pointer
+ */
+
+char *_command_prompt(void)
 {
 
 	char input[BUFFER + 1] = { 0x0 };
