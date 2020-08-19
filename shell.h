@@ -25,7 +25,7 @@ void _prompt(void);
 int _print_string(char ch);
 void _printf(char *string);
 int _strlen(char *s);
-char* _command_prompt(void);
+char _command_prompt(void);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 int _strcmp(const char *s1, char *s2);
