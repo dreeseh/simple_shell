@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 		/* child process */
 		if (pid == 0)
 		{
-			if (_strcmp(*arg, "exit") == 2)
+			if (_strcmp(*arg, "exit") == 0)
 				break;
 			_strcpy(cmd, "/bin/");
 			_strcat(cmd, *arg);
