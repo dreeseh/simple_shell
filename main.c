@@ -2,16 +2,16 @@
 #define BUFFER 255
 #include "shell.h"
 /**
- *
- *
- *
+ * main - entry point
+ * @argc: number of strings
+ * @argv: array of strings
+ * Return: handled by error_return.c
  */
 int main(int argc, char *argv[])
 {
 	pid_t pid, wpid;
 	int status;
 	unsigned int i = 0;
-
 	char cmd[100];
 	char *arg[MAXARG + 1] = {NULL};
 	char input[BUFFER + 1] = {0x0};
@@ -20,37 +20,34 @@ int main(int argc, char *argv[])
 	size_t length = BUFFER;
 	int ret_val, endoffile;
 
-
-/*char *env[] = { (char *) "PATH=/bin", 0 }; */
 	while (1)
 	{
-		manual_mode(argc, argv);
-		_prompt();
+		if (argc >= 2)
+			manual_mode(argc, argv);
+		if (isatty(STDIN_FILENO) == 1)
+			_prompt();
 		endoffile = getline(&input_pointer, &length, stdin);
 		if (endoffile == EOF)
-		{
 			exit(EXIT_SUCCESS);
-		}
-
 		input[_strlen(input) - 1] = '\0';
-
 		(void)wpid;
-
 		while (i < sizeof(arg) && *p)
 		{
-			if (*p == ' ') continue;
-			if (*p == '\n') break;
-			for (arg[i++] = p ; *p && *p != ' ' && *p != '\n' ; p++);
+			if (*p == ' ')
+				continue;
+			if (*p == '\n')
+				break;
+			for (arg[i++] = p ; *p && *p != ' ' && *p != '\n' ; p++)
+				;
 			*p = '\0';
 			p++;
 		}
-
 		pid = fork();
-
 		/* child process */
 		if (pid == 0)
 		{
-			if (_strcmp (*arg, "exit") == 2) break;
+			if (_strcmp(*arg, "exit") == 0)
+				break;
 			_strcpy(cmd, "/bin/");
 			_strcat(cmd, *arg);
 			if (execve(cmd, arg, NULL) == -1)
@@ -63,16 +60,14 @@ int main(int argc, char *argv[])
 		/* error forking */
 		else if (pid < 0)
 			perror("err with child process");
-
 		/*  parent process */
 		else
 		{
-			do
-			{
+			do {
 				wpid = waitpid(pid, &status, WUNTRACED);
-			}
-			while (!WIFEXITED(status) && !WIFSIGNALED(status));
-			if (_strcmp (*arg, "exit") == 2) break;
+			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+			if (_strcmp(*arg, "exit") == 2)
+				break;
 			ret_val = 0;
 		}
 	}
