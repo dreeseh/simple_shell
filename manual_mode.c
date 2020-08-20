@@ -20,6 +20,7 @@ void manual_mode(int argc, char *argv[])
 			if (execve(argv[1], argv, NULL) == -1)
 			{
 				perror("command not found");
+				exit(EXIT_SUCCESS);
 			}
 		}
 /* error forking */
