@@ -22,8 +22,10 @@ int main(int argc, char *argv[])
 
 	while (1)
 	{
-		manual_mode(argc, argv);
-		_prompt();
+		if (argc >= 2)
+			manual_mode(argc, argv);
+		if (isatty(STDIN_FILENO) == 1)
+			_prompt();
 		endoffile = getline(&input_pointer, &length, stdin);
 		if (endoffile == EOF)
 			exit(EXIT_SUCCESS);
