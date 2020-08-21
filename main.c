@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 			do {
 				wpid = waitpid(pid, &status, WUNTRACED);
 			} while (!WIFEXITED(status) && !WIFSIGNALED(status));
-			if (_strcmp(*arg, "exit") == 2)
+			if (_strcmp(*arg, "exit") == 0)
 				break;
 			ret_val = 0;
 		}
