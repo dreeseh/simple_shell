@@ -2,15 +2,22 @@
 .SH NAME
 simple_shell -a simple inplementation of a UNIX shell
 .SH SYNOPSIS
-
+.BI "simple_shell"
+[command_string | file]
 .SH DESCRIPTION
-
-.SH EXAMPLES
-
-.SH SEE ALSO
-
+.BI "simple_shell"
+is a simple command language interpreter that executes commands from stdin or from a file.
+.SH COMMANDS
+.IP "exit [status]"
+Terminates the shell.
+.IP "echo [-n] args.."
+Print the arguments to stdout -
+.BI "man ECHO(1)"
+.IP ls
+List directory contents -
 .SH BUGS
-
-.SH AUTHORS
-
-.SH COPYRIGHT
+- -
+.SH AUTHOR
+Blake Stewart & Reese Hicks
+.SH SEE ALSO
+.BI "BASH(1)"
